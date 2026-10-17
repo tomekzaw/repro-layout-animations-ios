@@ -2,15 +2,25 @@
 
 ![Build](https://github.com/tomekzaw/repro-layout-animations-ios/workflows/Pre%20Merge%20Checks/badge.svg)
 
-This is your new React Native Reproducer project.
+Reproducer for a React Native bug: when a `<Text>` grows during a `LayoutAnimation`, words jump between lines on iOS with the New Architecture.
+
+Instead of unrolling line by line with the line breaks of the final layout, the last visible line also holds the words of the next line, cut off at the right edge. When the next line is revealed, those words jump down to it. Android (with `enableLayoutAnimationsOnAndroid` enabled) and the iOS old architecture unroll the text correctly.
+
+## Steps
+
+1. `cd ReproducerApp && yarn install && (cd ios && bundle install && bundle exec pod install)`
+2. `yarn ios`
+3. Tap **Expand** and watch the last visible line during the 3-second animation.
+
+The whole repro is in [`ReproducerApp/App.tsx`](ReproducerApp/App.tsx).
 
 # Reproducer TODO list
 
 - [x] 1. Create a new reproducer project.
-- [ ] 2. Git clone your repository locally.
-- [ ] 3. Edit the project to reproduce the failure you're seeing.
-- [ ] 4. Push your changes, so that Github Actions can run the CI.
-- [ ] 5. Make sure the repository is public and share the link with the issue you reported.
+- [x] 2. Git clone your repository locally.
+- [x] 3. Edit the project to reproduce the failure you're seeing.
+- [x] 4. Push your changes, so that Github Actions can run the CI.
+- [x] 5. Make sure the repository is public and share the link with the issue you reported.
 
 # How to use this Reproducer
 
